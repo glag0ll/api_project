@@ -1,3 +1,5 @@
+import json
+
 from utils.api import GoogleMapsApi
 from requests import Response
 
@@ -7,5 +9,11 @@ class TestCreatePlace():
 
         google_maps_api = GoogleMapsApi()
 
-        print('\nМетод POST')
-        result_post: Response = google_maps_api.create_new_place()
+        print('\nметод POST')
+        result_post = google_maps_api.create_new_place()
+
+        check_post = result_post.json()
+        place_id = check_post.get('place_id')
+
+        print('\nметод GET')
+        result_get = google_maps_api.get_new_place(place_id)

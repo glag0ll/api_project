@@ -5,6 +5,10 @@ key = '?key=qaclick123'
 
 class GoogleMapsApi():
 
+
+    """метод для создания новой локации"""
+
+
     @staticmethod
     def create_new_place():
 
@@ -36,7 +40,7 @@ class GoogleMapsApi():
                 "language": "French-IN"
         }
 
-        post_resource = '/maps/api/place/add/json'
+        post_resource = '/maps/api/place/add/json'          # ресурс метода post
         post_url = base_url + post_resource + key
         print(post_url)
 
@@ -44,4 +48,19 @@ class GoogleMapsApi():
 
         print(result_post.json())
         print(result_post.status_code)
-        return result_post.json()
+        return result_post
+
+    """метод для проверки новой локации"""
+
+    @staticmethod
+    def get_new_place(place_id):
+
+        get_resource = '/maps/api/place/get/json'           # ресурс метода get
+        get_url = base_url + get_resource + key + "&place_id=" + place_id
+        print(get_url)
+
+        result_get = HttpMethods.get(get_url)
+
+        print(result_get.json())
+        print(result_get.status_code)
+        return result_get

@@ -5,8 +5,8 @@ class HttpMethods:
     cookies = ''
 
     @classmethod
-    def get(cls, url, body):
-        return requests.get(url, json=body, headers=cls.headers, cookies=cls.cookies)
+    def get(cls, url):
+        return requests.get(url, headers=cls.headers, cookies=cls.cookies)
 
     @classmethod
     def post(cls, url, body):
