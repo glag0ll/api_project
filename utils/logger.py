@@ -3,20 +3,20 @@ import os
 from requests import Response
 
 class Logger:
-    # Исправляем путь: экранируем слеши и создаем директорию
-    log_dir = 'СЮДА НЕОБХОДИМО ВСТАВИТЬ ПОЛНЫЙ ПУТЬ ДО ПАПКИ logs'
-    file_name = f'log_{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.log'  # Безопасный формат
+
+    log_dir = 'СЮДА НУЖНО ВСТАВИТЬ ПУТЬ ДО ПАПКИ logs'
+    file_name = f'log_{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.log'
     file_path = os.path.join(log_dir, file_name)
 
     @classmethod
     def _ensure_log_dir_exists(cls):
         """создает директорию для логов, если её нет"""
-        os.makedirs(cls.log_dir, exist_ok=True)  # Автоматическое создание директории
+        os.makedirs(cls.log_dir, exist_ok=True)
 
     @classmethod
     def write_log_to_file(cls, data: str):
         try:
-            cls._ensure_log_dir_exists()  # Проверяем/создаем директорию перед записью
+            cls._ensure_log_dir_exists()
             with open(cls.file_path, 'a', encoding='utf-8') as logger_file:
                 logger_file.write(data)
         except Exception as e:
@@ -29,7 +29,7 @@ class Logger:
         data_to_add = (
             "\n-----\n"
             f"тест: {test_name}\n"
-            f"время: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"  # Форматирование времени
+            f"время: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
             f"метод: {method}\n"
             f"URL: {url}\n\n"
         )
@@ -37,8 +37,8 @@ class Logger:
         cls.write_log_to_file(data_to_add)
 
     @classmethod
-    def add_response(cls, result: Response):  # Убрано значение по умолчанию
-        # Проверка типа (опционально, но рекомендуется)
+    def add_response(cls, result: Response):
+
         if not isinstance(result, Response):
             error_msg = f"ошибка: ожидается Response, получен {type(result)}"
             print(error_msg)

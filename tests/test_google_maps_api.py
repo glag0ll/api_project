@@ -1,7 +1,4 @@
-import json
-
 from utils.api import GoogleMapsApi
-from requests import Response
 from utils.checking import Checking
 
 class TestCreatePlace():
